@@ -14,15 +14,16 @@ import {
 } from "@/components/ui/dropdown-menu"
 import Link from "next/link"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
+import { SidebarTrigger } from "./ui/sidebar"
 
 
 
 const Navbar = () => {
-  const {theme, setTheme} = useTheme()
+  const { theme, setTheme } = useTheme()
   return (
     <nav>
       {/* Left */}
-      collapseButton
+      <SidebarTrigger />
       {/* Right */}
       <div className="flex items-center gap-4">
         <Link href='/dashboard'>Dashboard</Link>
