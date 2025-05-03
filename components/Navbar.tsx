@@ -14,12 +14,13 @@ import {
 } from "@/components/ui/dropdown-menu"
 import Link from "next/link"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
-import { SidebarTrigger } from "./ui/sidebar"
+import { SidebarTrigger, useSidebar } from "./ui/sidebar"
 
 
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme()
+  const {toggleSidebar} = useSidebar()
   return (
     <nav>
       {/* Left */}
