@@ -1,5 +1,5 @@
 import { Home, Inbox, Calendar, Search, Settings, User, User2, ChevronUp, Plus, Projector, ChevronDown } from 'lucide-react'
-import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupAction, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarSeparator } from './ui/sidebar';
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupAction, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuBadge, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarSeparator } from './ui/sidebar';
 import Link from 'next/link';
 import Image from 'next/image';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu';
@@ -61,6 +61,9 @@ const AppSidebar = () => {
                     <span>{item.title}</span>
                   </Link>
                 </SidebarMenuButton>
+                {item.title === 'Inbox' && (
+                  <SidebarMenuBadge>5</SidebarMenuBadge>
+                )}
               </SidebarMenuItem>)}
             </SidebarMenu>
           </SidebarGroupContent>
@@ -94,7 +97,7 @@ const AppSidebar = () => {
           </SidebarGroupContent>
         </SidebarGroup>
         {/* Collapsable */}
-        <Collapsible  defaultOpen className='group/collapsible'>
+        <Collapsible defaultOpen className='group/collapsible'>
           <SidebarGroup>
             <SidebarGroupLabel asChild>
               <CollapsibleTrigger>
@@ -104,30 +107,75 @@ const AppSidebar = () => {
             </SidebarGroupLabel>
             <CollapsibleContent>
               <CollapsibleContent>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild>
-                      <Link href='/#'>
-                        <Projector />
-                        See All Projects
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild>
-                      <Link href='/#'>
-                        <Plus />
-                        Add Project
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                </SidebarMenu>
-              </SidebarGroupContent>
+                <SidebarGroupContent>
+                  <SidebarMenu>
+                    <SidebarMenuItem>
+                      <SidebarMenuButton asChild>
+                        <Link href='/#'>
+                          <Projector />
+                          See All Projects
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem>
+                      <SidebarMenuButton asChild>
+                        <Link href='/#'>
+                          <Plus />
+                          Add Project
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  </SidebarMenu>
+                </SidebarGroupContent>
               </CollapsibleContent>
             </CollapsibleContent>
           </SidebarGroup>
         </Collapsible>
+        {/* Nested  items*/}
+        <SidebarGroup>
+          <SidebarGroupLabel>
+            Project
+          </SidebarGroupLabel>
+          <SidebarGroupAction>
+            <Plus /> <span className='sr-only'>Add Project</span>
+          </SidebarGroupAction>
+          <SidebarGroupContent>
+            <SidebarMenu>
+
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        <SidebarGroup>
+          <SidebarGroupLabel>
+            Nested ItemS
+          </SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <Link href='/#'>
+                    Add Or See
+                  </Link>
+                </SidebarMenuButton>
+                <SidebarMenuSub>
+                  <SidebarMenuSubButton asChild>
+                    <Link href='/#'>
+                      <Plus />
+                      Add Project
+                    </Link>
+                  </SidebarMenuSubButton>
+                  <SidebarMenuSubButton asChild>
+                    <Link href='/#'>
+                      <Plus />
+                      Add Project
+                    </Link>
+                  </SidebarMenuSubButton>
+                </SidebarMenuSub>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
         <SidebarMenu>
