@@ -1,3 +1,6 @@
+import Image from "next/image";
+import { Card, CardContent, CardFooter, CardTitle } from "./ui/card";
+import { Badge } from "./ui/badge";
 
 interface CardData {
   id: number;
@@ -12,7 +15,7 @@ interface TransactionData {
   title: string;
   badge: string;
   image: string;
-  count: number; 
+  count: number;
 }
 
 const popularContent: CardData[] = [
@@ -66,7 +69,7 @@ const latestTransactions: TransactionData[] = [
     title: "Monthly Subscription XYZ",
     badge: "Recurring",
     image: "https://images.unsplash.com/photo-1580894908361-967195033215?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3Vic2NyaXB0aW9ufGVufDB8fDB8fHww&auto=format&fit=crop&w=100&q=60", // Example: Abstract for subscription
-    count: 49, 
+    count: 49,
   },
   {
     id: 2,
@@ -106,9 +109,48 @@ const latestTransactions: TransactionData[] = [
 ];
 
 
-const CardList = ({title}: {title: string}) => {
+const CardList = ({ title }: { title: string }) => {
+
+  const list = title === 'Popular Content' ? popularContent : latestTransactions;
+
   return (
-    <div>CardList</div>
+    <div className="">
+      <h1 className="text-xl font-semibold mb-6 text-gray-800 dark:text-white">
+        {title}
+      </h1>
+      <div className="flex flex-col gap-4">
+        {list.map((item) => (
+          <Card
+            key={item.id}
+            className="flex-row items-center gap-4 p-4 rounded-2xl shadow-md border hover:shadow-lg transition-shadow duration-300"
+          >
+            <div className="w-14 h-14 min-w-14 rounded-lg relative overflow-hidden">
+              <Image
+                src={item.image}
+                alt={item.title}
+                fill
+                className="object-cover"
+              />
+            </div>
+
+            <div className="flex flex-col gap-1 flex-1">
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-base font-medium">
+                  {item.title}
+                </CardTitle>
+                <Badge variant="secondary">
+                  {item.badge}
+                </Badge>
+
+              </div>
+              <CardFooter className="text-sm text-gray-500 dark:text-gray-400 p-0">
+                {item.count / 1000}K views
+              </CardFooter>
+            </div>
+          </Card>
+        ))}
+      </div>
+    </div>
   );
 };
 
