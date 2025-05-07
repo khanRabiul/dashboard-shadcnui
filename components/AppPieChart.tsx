@@ -6,6 +6,7 @@ import {
   ChartContainer,
   ChartTooltipContent,
 } from "./ui/chart"
+import { TrendingUp } from "lucide-react"
 
 const chartConfig = {
   visitors: {
@@ -96,6 +97,12 @@ const AppPieChart = () => {
           </Pie>
         </PieChart>
       </ChartContainer>
+      <div className="mt-4 flex items-center justify-center gap-2 font-medium leading-none">
+        Trending up by 5.2% this month <TrendingUp className="text-green-500 text-center h-4 w-4" />
+      </div>
+      <div className="leading-none text-muted-foreground text-center">
+        Showing total visitors for the last 6 months
+      </div>
     </div>
   )
 }
